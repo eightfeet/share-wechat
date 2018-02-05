@@ -23,5 +23,7 @@ export default async function (configs, shareData, url) {
       const {data, success, cancel} = shareData;
       await share(data, success, cancel);
     }
+  } else {
+    throw '非微信环境！';
   }
 }
