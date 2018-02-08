@@ -15,15 +15,22 @@ export function isWeChat() {
   return false;
 }
 
-export default async function (configs, shareData, url) {
-  if (isWeChat()) {
-    await loader(url);
-    await config(configs);
-    if (shareData) {
-      const {data, success, cancel} = shareData;
-      await share(data, success, cancel);
-    }
-  } else {
-    throw '非微信环境！';
-  }
+export default function (configs, shareData, url) {
+  Promise.resolve()
+    .then(() => {
+      if (isWeChat()) {
+        return loader(url);
+      } else {
+        throw '非微信环境！';
+      }
+    })
+    .then(() => config(configs))
+    .then(res => {
+      if (shareData) {
+        const {data, success, cancel} = shareData;
+        return share(data, success, cancel);
+      } else {
+        return res;
+      }
+    })
 }
