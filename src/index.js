@@ -16,7 +16,7 @@ export function isWeChat() {
 }
 
 export default function (configs, shareData, url) {
-  Promise.resolve()
+  return Promise.resolve()
     .then(() => {
       if (isWeChat()) {
         return loader(url);
