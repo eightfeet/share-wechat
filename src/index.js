@@ -1,7 +1,10 @@
-import 'babel-polyfill';
 import loader from './loader.js';
 import config from './config.js';
 import share from './share.js';
+
+if (window.Promise === undefined) {
+	throw new Error('Promise pollyfill not found.');
+}
 
 export const wechatShare = share;
 
@@ -16,7 +19,7 @@ export function isWeChat() {
 }
 
 export default function (configs, shareData, url) {
-  Promise.resolve()
+  return Promise.resolve()
     .then(() => {
       if (isWeChat()) {
         return loader(url);
