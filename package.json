@@ -1,12 +1,12 @@
 {
   "name": "share-wechat",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "rollup": "rollup -c",
-    "prepublish": "npm run rollup"
+    "prepublish": "rm -rf ./lib && npm run rollup"
   },
   "repository": {
     "type": "git",
